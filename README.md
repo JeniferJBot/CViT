@@ -2,7 +2,7 @@
 ### Deepfake Video Detection Using Convolutional Vision Transformer
 
 Implementation code for our paper. 
-[link to paper](https://arxiv.org/abs/2102.11126) | [link to MS Thesis](https://etd.aau.edu.et/items/ed817f90-cfbd-4228-bf8b-0d90334a2f8b) |
+[link to paper](https://arxiv.org/abs/2102.11126) | [link to MS Thesis (AAU)](https://etd.aau.edu.et/items/ed817f90-cfbd-4228-bf8b-0d90334a2f8b) |
 [link to MS Thesis PDF file](https://github.com/erprogs/CViT/blob/main/Deressa_Wodajo_MS_Thesis_2020.pdf)
 | [link to MS Thesis defense PPT file](https://github.com/erprogs/CViT/blob/main/CViT.pptx) 
 
