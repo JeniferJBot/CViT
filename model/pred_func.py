@@ -1,7 +1,6 @@
 import os
 import cv2
 import torch
-import face_recognition
 from torchvision import transforms
 import numpy as np
 from tqdm import tqdm
@@ -125,50 +124,6 @@ def face_blaze(video_path):
 
     return ([], 0) if count_blaze == 0 else (temp_blaze[:count_blaze], count_blaze)
 
-def face_rec(frames, p=None, klass=None):
-    temp_face = np.zeros((len(frames), 224, 224, 3), dtype=np.uint8)
-    count = 0
-    mod = "cnn" if dlib.DLIB_USE_CUDA else "hog"
-    padding = 10
-    for _, frame in tqdm(enumerate(frames), total=len(frames)):
-        frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
-        try:
-            face_locations = face_recognition.face_locations(
-                frame, number_of_times_to_upsample=0, model=mod
-            )
-
-            #print('len',len(face_locations))
-
-            for face_location in face_locations:
-                if count < len(frames):
-                    top, right, bottom, left = face_location
-                    top = max(0, top - padding)
-                    bottom = min(frame.shape[0], bottom + padding)
-                    left = max(0, left - padding)
-                    right = min(frame.shape[1], right + padding)
-                        
-                    face_image = frame[top:bottom, left:right]
-                    face_image = cv2.resize(
-                        face_image, (224, 224), interpolation=cv2.INTER_AREA
-                    )
-
-                    face_image = cv2.cvtColor(face_image, cv2.COLOR_BGR2RGB)
-
-                    #if face_mtcnn_(face_image):
-                    #    print('FILTEINRG IMAGE WITH MTCNN')
-                    #    temp_face[count] = face_image
-                    #    count += 1
-
-                    temp_face[count] = face_image
-                    count += 1
-                else:
-                    break
-        except:
-            print('error encountered when extracting video frames')
-
-    return ([], 0) if count == 0 else (temp_face[:count], count)
-
-
 def preprocess_frame(frame):
     df_tensor = torch.tensor(frame, device=device).float()
     df_tensor = df_tensor.permute((0, 3, 1, 2))
@@ -252,4 +207,5 @@ def store_result(
         result["video"]["compression"].append(compression)
 
     return result
+
 
