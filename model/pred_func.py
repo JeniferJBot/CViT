@@ -1,7 +1,6 @@
 import os
 import cv2
 import torch
-import dlib
 import face_recognition
 from torchvision import transforms
 import numpy as np
@@ -253,3 +252,4 @@ def store_result(
         result["video"]["compression"].append(compression)
 
     return result
+
