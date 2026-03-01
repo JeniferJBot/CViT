@@ -323,6 +323,36 @@ def main():
     end_time = perf_counter()
     print("\n\n--- %s seconds ---" % (end_time - start_time))
 
+# Streamlit function (DO NOT REMOVE)
+def predict_video(video_file):
 
+    cvit_weight = "cvit2_deepfake_detection_ep_50.pth"
+    net = "cvit2"
+    fp16 = False
+    num_frames = 15
+
+    model = load_cvit(cvit_weight, net, fp16)
+
+    result, _, _, pred = predict(
+        video_file,
+        model,
+        fp16,
+        set_result(),
+        num_frames,
+        net,
+        "streamlit"
+    )
+
+    return real_or_fake(pred[0])
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
+
+
+
+
