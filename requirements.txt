@@ -8,3 +8,4 @@ Pillow
 albumentations
 scikit-learn
 matplotlib
+einops
