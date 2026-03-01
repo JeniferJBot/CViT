@@ -12,7 +12,7 @@ from helpers.helpers_read_video_1 import VideoReader as VR
 from helpers.helpers_face_extract_1 import FaceExtractor
 from helpers.blazeface import BlazeFace
 
-device = 'cuda' if torch.cuda.is_available() else 'cpu'
+device = 'cpu'
 
 torch.cuda.empty_cache()
 
@@ -168,7 +168,7 @@ def extract_frames(video_file, frames_nums=15):
 
 def df_face(vid, num_frames):
     img = extract_frames(vid, num_frames)
-    face, count = face_rec(img)
+   face, count = face_mtcnn(img)
     #face, count = face_mtcnn(img)
     #face, count = face_blaze(vid)
     return preprocess_frame(face) if count > 0 else []
@@ -207,5 +207,6 @@ def store_result(
         result["video"]["compression"].append(compression)
 
     return result
+
 
 
