@@ -168,11 +168,8 @@ def extract_frames(video_file, frames_nums=15):
 
 def df_face(vid, num_frames):
     img = extract_frames(vid, num_frames)
-   face, count = face_mtcnn(img)
-    #face, count = face_mtcnn(img)
-    #face, count = face_blaze(vid)
+    face, count = face_mtcnn(img)
     return preprocess_frame(face) if count > 0 else []
-
 
 def is_video(vid):
     return os.path.isfile(vid) and vid.endswith(
@@ -207,6 +204,7 @@ def store_result(
         result["video"]["compression"].append(compression)
 
     return result
+
 
 
 
