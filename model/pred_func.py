@@ -33,6 +33,7 @@ def load_cvit(cvit_weight, net, fp16):
              dim=1024, depth=6, heads=8, mlp_dim=2048)
 
     model.to(device)
+    weight_path=os.path.join("weight",cvit_weight)
     checkpoint = torch.load(os.path.join("weight", cvit_weight), map_location=torch.device('cpu'))
     
     if 'state_dict' in checkpoint:
@@ -204,6 +205,7 @@ def store_result(
         result["video"]["compression"].append(compression)
 
     return result
+
 
 
 
