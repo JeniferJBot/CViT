@@ -74,8 +74,7 @@ def faceforensics(
 
     count = 0
     accuracy = 0
-    model = load_cvit(, fp16)
-
+    model = load_cvit(cvit_weight, net, fp16)
     for v_t in vid_type:
         for dirpath, dirnames, filenames in os.walk(os.path.join(root_dir, v_t)):
             klass = next(
