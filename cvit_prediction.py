@@ -50,7 +50,12 @@ def vids(
 
 
 def faceforensics(
-    , root_dir="FaceForensics\\data", dataset=None, num_frames=15, net=None, fp16=False
+    cvit_weight,
+    root_dir="FaceForensics\\data",
+    dataset=None,
+    num_frames=15,
+    net=None,
+    fp16=False
 ):
     vid_type = ["original_sequences", "manipulated_sequences"]
     result = set_result()
