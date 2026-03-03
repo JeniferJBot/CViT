@@ -3,7 +3,6 @@ import cv2
 import torch
 from torchvision import transforms
 import numpy as np
-from tqdm import tqdm
 from PIL import Image
 from helpers.loader import *
 from facenet_pytorch import MTCNN
@@ -61,7 +60,7 @@ def face_mtcnn(frames):
     temp_face = np.zeros((len(frames), 224, 224, 3), dtype=np.uint8)
     count = 0
 
-    for _, frame in tqdm(enumerate(frames), total=len(frames)):
+    for _, frame in enumerate(frames):
 
         try:
             boxes, conf = mtcnn.detect(frame)
@@ -208,6 +207,7 @@ def store_result(
         result["video"]["compression"].append(compression)
 
     return result
+
 
 
 
