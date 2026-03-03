@@ -172,7 +172,7 @@ def dfdc(
     if os.path.isfile(os.path.join(root_dir, "metadata.json")):
         with open(os.path.join(root_dir, "metadata.json")) as data_file:
             dfdc_meta = json.load(data_file)
-    model = load_cvit(, fp16)
+    model = load_cvit(cvit_weight, net, fp16)
     count = 0
     accuracy = 0
     
@@ -209,8 +209,7 @@ def celeb(, root_dir="Celeb-DF-v2", dataset=None, num_frames=15, net=None, fp16=
     ky = ["Celeb-real", "Celeb-synthesis"]
     count = 0
     accuracy = 0
-    model = load_cvit(cvit_weight, fp16)
-
+    model = load_cvit(cvit_weight, net, fp16)
     for ck in cfl:
         ck_ = ck.split("/")
         klass = ck_[0]
@@ -343,7 +342,6 @@ def predict_video(video_file):
     num_frames = 15
 
     model = load_cvit(cvit_weight, net, fp16)
-
     result, _, _, pred = predict(
         video_file,
         model,
