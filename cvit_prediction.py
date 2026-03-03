@@ -120,7 +120,7 @@ def timit(
 ):
     keywords = ["higher_quality", "lower_quality"]
     result = set_result()
-    model = load_cvit(, fp16)
+    model = load_cvit(cvit_weight, net, fp16)
     count = 0
     accuracy = 0
     i = 0
