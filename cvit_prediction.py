@@ -50,7 +50,7 @@ def vids(
 
 
 def faceforensics(
-    cvit_weight, root_dir="FaceForensics\\data", dataset=None, num_frames=15, net=None, fp16=False
+    , root_dir="FaceForensics\\data", dataset=None, num_frames=15, net=None, fp16=False
 ):
     vid_type = ["original_sequences", "manipulated_sequences"]
     result = set_result()
@@ -69,7 +69,7 @@ def faceforensics(
 
     count = 0
     accuracy = 0
-    model = load_cvit(cvit_weight, fp16)
+    model = load_cvit(, fp16)
 
     for v_t in vid_type:
         for dirpath, dirnames, filenames in os.walk(os.path.join(root_dir, v_t)):
@@ -106,10 +106,10 @@ def faceforensics(
     return result
 
 
-def timit(cvit_weight, root_dir="DeepfakeTIMIT", dataset=None, num_frames=15, net=None, fp16=False):
+def timit(, root_dir="DeepfakeTIMIT", dataset=None, num_frames=15, net=None, fp16=False):
     keywords = ["higher_quality", "lower_quality"]
     result = set_result()
-    model = load_cvit(cvit_weight, fp16)
+    model = load_cvit(, fp16)
     count = 0
     accuracy = 0
     i = 0
@@ -146,7 +146,7 @@ def timit(cvit_weight, root_dir="DeepfakeTIMIT", dataset=None, num_frames=15, ne
 
 
 def dfdc(
-    cvit_weight,
+    ,
     root_dir="deepfake-detection-challenge\\train_sample_videos",
     dataset=None,
     num_frames=15,
@@ -161,7 +161,7 @@ def dfdc(
     if os.path.isfile(os.path.join(root_dir, "metadata.json")):
         with open(os.path.join(root_dir, "metadata.json")) as data_file:
             dfdc_meta = json.load(data_file)
-    model = load_cvit(cvit_weight, fp16)
+    model = load_cvit(, fp16)
     count = 0
     accuracy = 0
     
@@ -191,7 +191,7 @@ def dfdc(
     return result
 
 
-def celeb(cvit_weight, root_dir="Celeb-DF-v2", dataset=None, num_frames=15, net=None, fp16=False):
+def celeb(, root_dir="Celeb-DF-v2", dataset=None, num_frames=15, net=None, fp16=False):
     with open(os.path.join("json_file", "celeb_test.json"), "r") as f:
         cfl = json.load(f)
     result = set_result()
@@ -326,7 +326,7 @@ def main():
 # Streamlit function (DO NOT REMOVE)
 def predict_video(video_file):
 
-    cvit_weight = "deepdeepfake_cvit_gpu_ep50.pkl"
+    cvit_weight = "cvit2_deepfake_detection_ep_50.pth"
     net = "cvit2"
     fp16 = False
     num_frames = 15
