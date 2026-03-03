@@ -156,8 +156,7 @@ def timit(
     return result
 
 
-def dfdc(
-    ,
+def dfdc(,
     root_dir="deepfake-detection-challenge\\train_sample_videos",
     dataset=None,
     num_frames=15,
@@ -202,7 +201,10 @@ def dfdc(
     return result
 
 
-def celeb(, root_dir="Celeb-DF-v2", dataset=None, num_frames=15, net=None, fp16=False):
+def celeb(
+    cvit_weight,
+    root_dir="Celeb-DF-v2",
+):
     with open(os.path.join("json_file", "celeb_test.json"), "r") as f:
         cfl = json.load(f)
     result = set_result()
