@@ -110,7 +110,14 @@ def faceforensics(
     return result
 
 
-def timit(, root_dir="DeepfakeTIMIT", dataset=None, num_frames=15, net=None, fp16=False):
+def timit(
+    cvit_weight,
+    root_dir="DeepfakeTIMIT",
+    dataset=None,
+    num_frames=15,
+    net=None,
+    fp16=False
+):
     keywords = ["higher_quality", "lower_quality"]
     result = set_result()
     model = load_cvit(, fp16)
