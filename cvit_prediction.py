@@ -326,7 +326,7 @@ def main():
 # Streamlit function (DO NOT REMOVE)
 def predict_video(video_file):
 
-    cvit_weight = "cvit2_deepfake_detection_ep_50.pth"
+    cvit_weight = "deepdeepfake_cvit_gpu_ep50.pkl"
     net = "cvit2"
     fp16 = False
     num_frames = 15
